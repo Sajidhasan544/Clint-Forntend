@@ -17,7 +17,7 @@ const AddClintInfo = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -29,13 +29,10 @@ const AddClintInfo = () => {
     setLoading(true);
 
     // Prepare payload for backend
+    // Only include optional fields if user provided non-empty values.
     const payload = {
       Company_Name: formData.Company_Name.trim(),
-      Contact_Person: formData.Contact_Person.trim(),
-      Contact_Number: formData.Contact_Number.trim(),
-      Mail: formData.Mail.trim(),
-      Address: formData.Address.trim(),
-      // Add default empty values for required backend fields
+      // keep defaults for backend-only fields (these exist even if optional fields omitted)
       facebookPage: "",
       linkedin: "",
       websiteExists: false,
@@ -43,6 +40,20 @@ const AddClintInfo = () => {
       problems: [],
       solutions: []
     };
+
+    // Add optional fields only when they are non-empty (prevents sending empty strings)
+    if (formData.Contact_Person && formData.Contact_Person.trim() !== "") {
+      payload.Contact_Person = formData.Contact_Person.trim();
+    }
+    if (formData.Contact_Number && formData.Contact_Number.trim() !== "") {
+      payload.Contact_Number = formData.Contact_Number.trim();
+    }
+    if (formData.Mail && formData.Mail.trim() !== "") {
+      payload.Mail = formData.Mail.trim();
+    }
+    if (formData.Address && formData.Address.trim() !== "") {
+      payload.Address = formData.Address.trim();
+    }
 
     console.log("Submitting:", payload);
 
@@ -68,10 +79,10 @@ const AddClintInfo = () => {
       });
 
       console.log("Inserted:", response.data);
-      
+
     } catch (err) {
       console.error("Error:", err.response?.data || err.message);
-      
+
       Swal.fire({
         title: "❌ Error!",
         text: err.response?.data?.error || "Failed to add company. Please try again.",
@@ -83,21 +94,12 @@ const AddClintInfo = () => {
     }
   };
 
-  // Check if form is valid
-  const isFormValid = () => {
-    return (
-      formData.Company_Name.trim() !== "" &&
-      formData.Contact_Person.trim() !== "" &&
-      formData.Contact_Number.trim() !== "" &&
-      formData.Mail.trim() !== "" &&
-      formData.Address.trim() !== ""
-    );
-  };
+
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex justify-center items-start p-4 md:p-20">
       <div className="bg-white shadow-xl rounded-2xl p-6 md:p-8 w-full max-w-2xl border border-gray-200">
-        
+
         {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 mb-4">
@@ -113,11 +115,11 @@ const AddClintInfo = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          
+
           {/* Company Name */}
           <div>
             <label className="block text-gray-700 font-semibold mb-2">
-              Company Name <span className="text-red-500">*</span>
+              Company Name
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -130,7 +132,7 @@ const AddClintInfo = () => {
                 onChange={handleChange}
                 placeholder="Enter company name"
                 className="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
-                required
+
               />
             </div>
           </div>
@@ -138,7 +140,7 @@ const AddClintInfo = () => {
           {/* Contact Person */}
           <div>
             <label className="block text-gray-700 font-semibold mb-2">
-              Contact Person <span className="text-red-500">*</span>
+              Contact Person
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -151,7 +153,7 @@ const AddClintInfo = () => {
                 onChange={handleChange}
                 placeholder="Enter contact person name"
                 className="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none"
-                required
+
               />
             </div>
           </div>
@@ -159,7 +161,7 @@ const AddClintInfo = () => {
           {/* Contact Number */}
           <div>
             <label className="block text-gray-700 font-semibold mb-2">
-              Phone Number <span className="text-red-500">*</span>
+              Phone Number
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -172,7 +174,7 @@ const AddClintInfo = () => {
                 onChange={handleChange}
                 placeholder="Enter phone number"
                 className="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
-                required
+
               />
             </div>
           </div>
@@ -180,7 +182,7 @@ const AddClintInfo = () => {
           {/* Email */}
           <div>
             <label className="block text-gray-700 font-semibold mb-2">
-              Email Address <span className="text-red-500">*</span>
+              Email Address
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -193,7 +195,6 @@ const AddClintInfo = () => {
                 onChange={handleChange}
                 placeholder="Enter email address"
                 className="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
-                required
               />
             </div>
           </div>
@@ -201,7 +202,7 @@ const AddClintInfo = () => {
           {/* Address */}
           <div>
             <label className="block text-gray-700 font-semibold mb-2">
-              Address <span className="text-red-500">*</span>
+              Address
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 pt-3 flex items-start pointer-events-none">
@@ -214,7 +215,7 @@ const AddClintInfo = () => {
                 placeholder="Enter company address"
                 rows="3"
                 className="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none resize-none"
-                required
+
               />
             </div>
           </div>
@@ -223,14 +224,14 @@ const AddClintInfo = () => {
           <div className="pt-4">
             <button
               type="submit"
-              disabled={!isFormValid() || loading}
+              disabled={loading}
               className={`
-                w-full py-4 rounded-xl font-bold text-lg transition-all duration-300
-                ${!isFormValid() || loading
+    w-full py-4 rounded-xl font-bold text-lg transition-all duration-300
+    ${loading
                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                   : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white hover:shadow-xl transform hover:-translate-y-0.5"
                 }
-              `}
+  `}
             >
               {loading ? (
                 <div className="flex items-center justify-center">
@@ -241,24 +242,8 @@ const AddClintInfo = () => {
                 "➕ Add Company"
               )}
             </button>
-            
-            <p className="text-gray-500 text-sm mt-3 text-center">
-              All fields marked with <span className="text-red-500">*</span> are required
-            </p>
           </div>
-
         </form>
-
-        {/* API Status */}
-        <div className="mt-8 pt-6 border-t border-gray-200">
-          <div className="flex items-center justify-center">
-            <div className={`w-2 h-2 rounded-full mr-2 ${API_URL ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></div>
-            <span className="text-sm text-gray-600">
-              Connected to: <span className="font-mono text-gray-800">{API_URL}</span>
-            </span>
-          </div>
-        </div>
-
       </div>
     </div>
   );

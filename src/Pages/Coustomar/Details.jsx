@@ -201,7 +201,7 @@ const Details = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-4 md:p-8 pt-24">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-4 md:p-8 pt-24 mt-16">
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
         
         {/* Header Section */}
@@ -209,9 +209,7 @@ const Details = () => {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
               <h1 className="text-2xl md:text-3xl font-bold text-white">{info.Company_Name}</h1>
-              <p className="text-blue-100 mt-1">
-                ID: <span className="font-mono">{id}</span>
-              </p>
+              
             </div>
             <div className="flex flex-wrap gap-2">
               <button
