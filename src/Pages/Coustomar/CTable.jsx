@@ -87,7 +87,7 @@ function CTable() {
     const manager = item.Support_Person || "-";
     const phone = item.Contact_Number || "-";
     const email = item.Mail || "-";
-    const id = item._id || index;
+    const id = item._id;
 
     return (
       <tr
