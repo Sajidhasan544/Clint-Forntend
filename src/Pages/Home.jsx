@@ -137,7 +137,7 @@ const Home = () => {
         {/* Footer Note */}
         <div className="text-center mt-12 pt-8 border-t border-gray-200">
           <p className="text-gray-500 text-sm">
-            Company Management System • Built with React & Node.js • Secure & Scalable
+            Company Management System • Secure & Scalable
           </p>
         </div>
 

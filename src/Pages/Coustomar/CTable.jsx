@@ -42,13 +42,10 @@ function CTable() {
     navigate(`/details/${id}`);
   };
 
-  // ✅ শুধু MEANINGFUL additional fields থাকলে true return করবে
   const hasMeaningfulAdditionalFields = (item) => {
     if (!item) return false;
-    
-    // Check only these 4 fields for meaningful data
+   
     const checkMeaningfulData = () => {
-      // 1. Check facebookPage - শুধু valid URL থাকলে
       if (item.facebookPage && item.facebookPage.trim() !== "") {
         const fb = item.facebookPage.trim().toLowerCase();
         const invalidFbValues = ["n/a", "na", "none", "null", "-", "", "no", "not available"];
@@ -59,8 +56,6 @@ function CTable() {
           }
         }
       }
-      
-      // 2. Check linkedin - শুধু valid URL থাকলে
       if (item.linkedin && item.linkedin.trim() !== "") {
         const li = item.linkedin.trim().toLowerCase();
         const invalidLiValues = ["n/a", "na", "none", "null", "-", "", "no", "not available"];
@@ -72,12 +67,11 @@ function CTable() {
         }
       }
       
-      // 3. Check websiteExists - শুধু true হলে
+
       if (item.websiteExists === true) {
         return true;
       }
       
-      // 4. Check successRate - শুধু 0 এর বেশি হলে
       if (item.successRate && Number(item.successRate) > 0) {
         return true;
       }
@@ -213,15 +207,10 @@ function CTable() {
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div>
                 <h2 className="text-2xl font-bold text-white">Company Directory</h2>
-                <p className="text-blue-100 mt-1">
-                  {data.length} companies registered • 
-                  <span className="ml-2">
-                    {data.filter(item => hasMeaningfulAdditionalFields(item)).length} with additional info
-                  </span>
-                </p>
+                
               </div>
               <div className="text-sm text-white/90">
-                Updated: {new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                
               </div>
             </div>
           </div>
@@ -361,41 +350,16 @@ function CTable() {
               <div className="mb-2 sm:mb-0">
                 Showing <span className="font-semibold">{data.length}</span> companies • 
                 <span className="ml-2 text-green-600 font-medium">
-                  {data.filter(item => hasMeaningfulAdditionalFields(item)).length} with additional info
+                  {data.filter(item => hasMeaningfulAdditionalFields(item)).length} done Analysis
                 </span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="inline-block w-2 h-2 bg-green-500 rounded-full"></span>
-                <span>Online • API Connected</span>
-              </div>
+              
             </div>
           </div>
         </div>
 
         {/* Status Legend */}
-        <div className="bg-white rounded-xl p-6 border border-gray-200 mb-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Status Information</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800 border border-gray-300">
-                Basic
-              </span>
-              <div>
-                <p className="text-sm text-gray-600 mb-1">Only basic company information</p>
-                <p className="text-xs text-gray-500">(Name, Contact, Phone, Email, Address)</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 border border-green-200">
-                ✓ Edited
-              </span>
-              <div>
-                <p className="text-sm text-gray-600 mb-1">Additional meaningful information</p>
-                <p className="text-xs text-gray-500">(Valid Facebook/LinkedIn URL, Website = Yes, Success Rate &gt; 0%)</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
         {/* Footer Note */}
         <div className="text-center text-gray-500 text-sm mt-8 pb-8">

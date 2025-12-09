@@ -21,10 +21,10 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 w-full bg-white shadow-md border-b border-gray-100 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          
+
           {/* Logo */}
           <div className="flex items-center">
-            <div 
+            <div
               onClick={() => navigate("/")}
               className="flex items-center cursor-pointer group"
             >
@@ -32,7 +32,7 @@ const Navbar = () => {
                 <span className="text-white font-bold text-xl">C</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">CompanyHub</h1>
+                <h1 className="text-xl font-bold text-gray-900">Innovate Solution</h1>
                 <p className="text-xs text-gray-500">Management System</p>
               </div>
             </div>
@@ -45,19 +45,18 @@ const Navbar = () => {
                 key={item.name}
                 to={item.path}
                 className={({ isActive }) =>
-                  `px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    isActive 
-                      ? "bg-blue-50 text-blue-700 border border-blue-200" 
-                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                  `px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive
+                    ? "bg-blue-50 text-blue-700 border border-blue-200"
+                    : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                   }`
                 }
               >
                 {item.name}
               </NavLink>
             ))}
-            
+
             <div className="h-6 w-px bg-gray-200 mx-2"></div>
-            
+
             <button
               onClick={handleLogout}
               className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-medium rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-200 shadow-sm hover:shadow"
@@ -100,17 +99,16 @@ const Navbar = () => {
                 to={item.path}
                 onClick={() => setMenuOpen(false)}
                 className={({ isActive }) =>
-                  `block px-3 py-3 rounded-lg text-base font-medium transition ${
-                    isActive 
-                      ? "bg-blue-50 text-blue-700 border-l-4 border-blue-600" 
-                      : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                  `block px-3 py-3 rounded-lg text-base font-medium transition ${isActive
+                    ? "bg-blue-50 text-blue-700 border-l-4 border-blue-600"
+                    : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
                   }`
                 }
               >
                 {item.name}
               </NavLink>
             ))}
-            
+
             <div className="pt-2">
               <button
                 onClick={() => {

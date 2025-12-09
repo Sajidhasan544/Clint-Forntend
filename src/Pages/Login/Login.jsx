@@ -18,7 +18,7 @@ const Login = () => {
 
         try {
             const success = await login(email, password);
-            
+
             if (success) {
                 Swal.fire({
                     icon: 'success',
@@ -57,14 +57,12 @@ const Login = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 flex items-center justify-center p-4">
             <div className="w-full max-w-md">
-                
+
                 {/* Logo/Header */}
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 mb-4 shadow-lg">
-                        <span className="text-3xl text-white">🔐</span>
-                    </div>
+                    
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                        Welcome to <span className="text-blue-600">CompanyHub</span>
+                        Welcome to <span className="text-blue-600">Innovate Solution</span>
                     </h1>
                     <p className="text-gray-600">Sign in to manage your companies</p>
                 </div>
@@ -76,7 +74,7 @@ const Login = () => {
                     </h2>
 
                     <form onSubmit={handleLogin} className="space-y-5">
-                        
+
                         {/* Email Field */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -86,18 +84,16 @@ const Login = () => {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <span className="text-gray-500">✉️</span>
                                 </div>
-                                <input 
+                                <input
                                     type="email"
                                     name="email"
-                                    placeholder="admin@companyhub.com"
+                                    placeholder="admin@Innovate Solution.com"
                                     required
                                     className="w-full pl-10 p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
                                     disabled={loading}
                                 />
                             </div>
                         </div>
-
-                        {/* Password Field */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Password
@@ -106,7 +102,7 @@ const Login = () => {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <span className="text-gray-500">🔒</span>
                                 </div>
-                                <input 
+                                <input
                                     type="password"
                                     name="password"
                                     placeholder="••••••••"
@@ -129,8 +125,8 @@ const Login = () => {
                                     Remember me
                                 </label>
                             </div>
-                            <a 
-                                href="#" 
+                            <a
+                                href="#"
                                 className="text-sm text-blue-600 hover:text-blue-800 font-medium transition"
                                 onClick={(e) => {
                                     e.preventDefault();
@@ -147,13 +143,13 @@ const Login = () => {
                         </div>
 
                         {/* Submit Button */}
-                        <button 
+                        <button
                             type="submit"
                             disabled={loading}
                             className={`
                                 w-full py-3.5 rounded-xl font-semibold text-lg transition-all duration-300
-                                ${loading 
-                                    ? 'bg-gray-300 cursor-not-allowed text-gray-500' 
+                                ${loading
+                                    ? 'bg-gray-300 cursor-not-allowed text-gray-500'
                                     : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white hover:shadow-lg transform hover:-translate-y-0.5'
                                 }
                             `}
@@ -169,13 +165,7 @@ const Login = () => {
                         </button>
 
                     </form>
-
-                    {/* Demo Credentials */}
-                    
-
                 </div>
-
-                {/* Footer */}
                 <div className="text-center mt-6">
                     <p className="text-sm text-gray-600">
                         Company Management System • Secure Access

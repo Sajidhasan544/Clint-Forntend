@@ -55,8 +55,6 @@ const AddClintInfo = () => {
       payload.Address = formData.Address.trim();
     }
 
-    console.log("Submitting:", payload);
-
     try {
       const response = await axios.post(`${API_URL}/data`, payload);
 
@@ -77,9 +75,6 @@ const AddClintInfo = () => {
         Mail: "",
         Address: ""
       });
-
-      console.log("Inserted:", response.data);
-
     } catch (err) {
       console.error("Error:", err.response?.data || err.message);
 
@@ -97,7 +92,7 @@ const AddClintInfo = () => {
 
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex justify-center items-start p-4 md:p-20">
+    <div className="w-full min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex justify-center items-start p-4 md:p-20 mt-16 md:mt-4 ">
       <div className="bg-white shadow-xl rounded-2xl p-6 md:p-8 w-full max-w-2xl border border-gray-200">
 
         {/* Header */}
